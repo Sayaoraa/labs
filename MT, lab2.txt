@@ -1,0 +1,55 @@
+0, ,<,st
+
+st,1, ,st1
+st,0, ,st0
+st, ,>,end
+
+st1, ,>,copy1
+st0, ,>,copy0
+
+copy1, ,>,move_1
+copy1,1,>,copy1
+copy1,0,>,copy1
+
+copy0, ,>,move_0
+copy0,1,>,copy0
+copy0,0,>,copy0
+
+move_1,1,>,move_1
+move_1,0,>,move_1
+move_1, ,=,repl1
+
+move_0,1,>,move_0
+move_0,0,>,move_0
+move_0, ,=,repl0
+
+repl1, ,1,end_rpl_1
+
+repl0, ,0,end_rpl_0
+
+end_rpl_1,1,<,end_rpl_1
+end_rpl_1,0,<,end_rpl_1
+end_rpl_1, ,<,end_cop1
+
+end_rpl_0,1,<,end_rpl_0
+end_rpl_0,0,<,end_rpl_0
+end_rpl_0, ,<,end_cop0
+
+end_cop1, ,1,move_l
+end_cop1,1,<,end_cop1
+end_cop1,0,<,end_cop1
+
+end_cop0, ,0,move_l
+end_cop0,1,<,end_cop0
+end_cop0,0,<,end_cop0
+
+move_l,1,<,st
+move_l,0,<,st
+
+end,1,>,end
+end,0,>,end
+end, ,>,end_m
+
+end_m,1,>,end_m
+end_m,0,>,end_m
+end_m, ,#,end_m
