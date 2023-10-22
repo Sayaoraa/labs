@@ -1,0 +1,146 @@
+0, ,<,st0
+
+st0,1,<,st0
+st0,0,<,st0
+st0, ,>,copy
+
+copy,1, ,mcr0_1
+copy,0, ,mcr0_0
+copy, ,>,rr0
+
+mcr0_1, ,>,mcr_1
+mcr_1,1,>,mcr_1
+mcr_1,0,>,mcr_1
+mcr_1, ,>,copy_wr_1_+
+mcr0_0, ,>,mcr_0
+mcr_0,1,>,mcr_0
+mcr_0,0,>,mcr_0
+mcr_0, ,>,copy_wr_0_+
+
+copy_wr_1_+, ,>,copy_wr_1
+copy_wr_0_+, ,>,copy_wr_0
+
+copy_wr_1, ,1,copy_b1
+copy_wr_1,1,>,copy_wr_1
+copy_wr_1,0,>,copy_wr_1
+copy_wr_0, ,0,copy_b0
+copy_wr_0,1,>,copy_wr_0
+copy_wr_0,0,>,copy_wr_0
+
+copy_b1,1,<,copy_b1
+copy_b1,0,<,copy_b1
+copy_b1, ,<,copy_b_1_+
+copy_b0,1,<,copy_b0
+copy_b0,0,<,copy_b0
+copy_b0, ,<,copy_b_0_+
+
+copy_b_1_+, ,<,copy_b_1
+copy_b_0_+, ,<,copy_b_0
+
+copy_b_1,1,<,copy_b_1
+copy_b_1,0,<,copy_b_1
+copy_b_1, ,1,copy_br_1
+copy_b_0,1,<,copy_b_0
+copy_b_0,0,<,copy_b_0
+copy_b_0, ,0,copy_br_0
+
+copy_br_1,1,>,copy
+copy_br_0,0,>,copy
+
+rr0, ,>,rr
+rr,1,>,rr
+rr,0,>,rr
+rr, ,!,st
+
+st,!,<,st
+st,1,<,st
+st,0,<,st
+st, ,%,mov_r
+
+mov_r,%,>,mov_r
+mov_r,1,>,mov_r
+mov_r,0,>,mov_r
+mov_r,!,<,cut!
+
+cut!,1,=,cut1!
+cut!,0,=,cut0!
+cut!,%, ,end
+cut%,1,=,cut1%
+cut%,0,=,cut0%
+cut%,!, ,cut%
+cut%, ,=,end_rth_center
+end_rth_center, ,>,end_rth
+
+cut1!,1,!,cut1!
+cut1!,!,>,cut1!_1
+cut1!_1,!, ,move_l!1
+cut0!,0,!,cut0!
+cut0!,!,>,cut0!_1
+cut0!_1,!, ,move_l!0
+move_l!1, ,<,move_l!1
+move_l!1,!,<,move_l!1
+move_l!1,1,<,move_l!1
+move_l!1,0,<,move_l!1
+move_l!1,%,1,movel+1
+movel+1,1,>,cut%
+
+move_l!0, ,<,move_l!0
+move_l!0,!,<,move_l!0
+move_l!0,1,<,move_l!0
+move_l!0,0,<,move_l!0
+move_l!0,%,0,movel+0
+movel+0,0,>,cut%
+
+
+cut1%,1,%,move_r%1
+cut0%,0,%,move_r%0
+move_r%1,%,>,move_r%1
+move_r%1,1,>,move_r%1
+move_r%1,0,>,move_r%1
+move_r%1,!,>,mover+1
+mover+1, ,1,next_left1
+next_left1,1,<,next_left1
+next_left1,!,<,cut!
+move_r%0,%,>,move_r%0
+move_r%0,1,>,move_r%0
+move_r%0,0,>,move_r%0
+move_r%0,!,>,mover+0
+mover+0, ,0,next_left0
+next_left0,0,<,next_left0
+next_left0,!,<,cut!
+
+end, ,>,end
+end,!, ,end_rth
+
+end_rth,1,>,end_rth
+end_rth,0,>,end_rth
+end_rth, ,>,end_lft
+end_lft,1,>,end_lft
+end_lft,0,>,end_lft
+end_lft, ,!,end_back
+
+end_back,!,<,end_back
+end_back,1,<,end_back
+end_back,0,<,end_back
+end_back, ,<,end_main
+
+end_main, ,>,end_main
+end_main,!, ,end_main_end
+end_main_end, ,<,end_main2
+end_main2, ,<,end_end
+end_end, ,#,end_end
+end_main,1, ,end_1
+end_main,0, ,end_0
+end_1, ,<,end_1
+end_0, ,<,end_0
+
+end_1,0,>,end_pr1
+end_1,1,>,end_pr1
+
+end_0,1,>,end_pr0
+end_0,0,>,end_pr0
+
+end_pr1, ,1,end_skip
+end_pr0, ,0,end_skip
+end_skip,1,>,end_main
+end_skip,0,>,end_main
